@@ -57,8 +57,32 @@ function binaryTree(
 	return i;
 }
 
+function binary(
+	array,
+	propName = 'id',
+	propValue = Math.floor(Math.random() * (array.length - 1) + 1)
+) {
+	let start = 0,
+		end = array.length - 1;
+	let i = 0;
+	while (start < end) {
+		i++;
+		const current = Math.floor((start + end) / 2);
+		const indexValue = array[current][propName];
+		if (indexValue == propValue) {
+			break;
+		} else if (indexValue < propValue) {
+			start = current + 1;
+		} else {
+			end = current - 1;
+		}
+	}
+	return [i, array[i], propValue];
+}
+
 const nodeArgs = process.argv.slice(2);
 // console.log(DATA);
 // sequential(DATA);
 // console.log('Node args: ', nodeArgs);
-binaryTree(DATA_SHUFFLED);
+// binaryTree(DATA_SHUFFLED);
+binary(DATA);
