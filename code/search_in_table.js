@@ -49,8 +49,8 @@ function binaryTree(
 	let target = JSON.parse(JSON.stringify(node));
 	let i = 0;
 	while (target.value != propValue) {
-		console.log(i, target.value, propValue);
 		i++;
+		console.log(i, target.value, propValue);
 		propValue < target.value ? (target = target.min) : (target = target.max);
 	}
 	i++; // becouse while work until is correct the condition, and stop when we find what we search
