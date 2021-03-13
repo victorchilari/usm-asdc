@@ -5,14 +5,14 @@ function sequential(
 	propName = 'id',
 	propValue = Math.floor(Math.random() * arr.length)
 ) {
-	let instFound = true;
+	let isntFound = true;
 	let i = 0;
 	do {
 		const element = arr[i];
-		if (element[propName] == propValue) instFound = false;
+		if (element[propName] == propValue) isntFound = false;
 		i++;
-	} while (instFound && i < arr.length);
-	// console.log(propValue, i, instFound, arr.length);
+	} while (isntFound && i < arr.length);
+	// console.log(propValue, i, isntFound, arr.length);
 	return i; // number of iterations
 }
 
