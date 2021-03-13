@@ -41,4 +41,8 @@ export function shuffle(arr, coff = 0.5) {
 	return data;
 }
 
+export function randomIndex(array) {
+	return Math.floor(Math.random() * (array.length - 1) + 1);
+}
+
 // setJSON(`${MOCK_NAME_SHUFFLED}, shuffle(DATA));

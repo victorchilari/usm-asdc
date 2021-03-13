@@ -1,10 +1,6 @@
-import {DATA, DATA_SHUFFLED} from './api.js';
+import {DATA, DATA_SHUFFLED, randomIndex} from './api.js';
 
-function sequential(
-	arr,
-	propName = 'id',
-	propValue = Math.floor(Math.random() * arr.length)
-) {
+function sequential(arr, propName = 'id', propValue = randomIndex(arr) + 1) {
 	let isntFound = true;
 	let i = 0;
 	do {
@@ -19,7 +15,7 @@ function sequential(
 function binaryTree(
 	array,
 	propName = 'id',
-	propValue = Math.floor(Math.random() * array.length)
+	propValue = randomIndex(array) + 1)
 ) {
 	const initValue = array[0][propName];
 	const node = {value: initValue, min: undefined, max: undefined};
@@ -60,7 +56,7 @@ function binaryTree(
 function binary(
 	array,
 	propName = 'id',
-	propValue = Math.floor(Math.random() * (array.length - 1) + 1)
+	propValue = randomIndex(array) + 1
 ) {
 	let start = 0,
 		end = array.length - 1;
@@ -82,7 +78,7 @@ function binary(
 
 const nodeArgs = process.argv.slice(2);
 // console.log(DATA);
-// sequential(DATA);
 // console.log('Node args: ', nodeArgs);
+// sequential(DATA);
 // binaryTree(DATA_SHUFFLED);
-binary(DATA);
+// binary(DATA);
