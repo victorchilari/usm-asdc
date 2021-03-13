@@ -1,5 +1,5 @@
-import {DATA_SHUFFLED as DATA} from './api.js';
-//_SHUFFLED
+import {DATA, DATA_SHUFFLED} from './api.js';
+
 function sequential(
 	arr,
 	propName = 'id',
@@ -22,7 +22,7 @@ function binaryTree(
 	propValue = Math.floor(Math.random() * array.length)
 ) {
 	const initValue = array[0][propName];
-	let node = {value: initValue, min: undefined, max: undefined};
+	const node = {value: initValue, min: undefined, max: undefined};
 	// Create binary tree
 	for (let i = 1; i < array.length; i++) {
 		const number = array[i][propName];
@@ -44,11 +44,21 @@ function binaryTree(
 			}
 		} while (isntInserted);
 	}
-	console.log(node);
+	console.log(node); // it works becouse is mutable
+	// Process
+	let target = JSON.parse(JSON.stringify(node));
+	let i = 0;
+	while (target.value != propValue) {
+		console.log(i, target.value, propValue);
+		i++;
+		propValue < target.value ? (target = target.min) : (target = target.max);
+	}
+	i++; // becouse while work until is correct the condition, and stop when we find what we search
+	return i;
 }
 
 const nodeArgs = process.argv.slice(2);
 // console.log(DATA);
 // sequential(DATA);
 // console.log('Node args: ', nodeArgs);
-binaryTree(DATA);
+binaryTree(DATA_SHUFFLED);
