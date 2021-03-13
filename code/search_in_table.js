@@ -12,11 +12,7 @@ function sequential(arr, propName = 'id', propValue = randomIndex(arr) + 1) {
 	return i; // number of iterations
 }
 
-function binaryTree(
-	array,
-	propName = 'id',
-	propValue = randomIndex(array) + 1)
-) {
+function binaryTree(array, propName = 'id', propValue = randomIndex(array) + 1) {
 	const initValue = array[0][propName];
 	const node = {value: initValue, min: undefined, max: undefined};
 	// Create binary tree
@@ -53,11 +49,7 @@ function binaryTree(
 	return i;
 }
 
-function binary(
-	array,
-	propName = 'id',
-	propValue = randomIndex(array) + 1
-) {
+function binary(array, propName = 'id', propValue = randomIndex(array) + 1) {
 	let start = 0,
 		end = array.length - 1;
 	let i = 0;
