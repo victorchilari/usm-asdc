@@ -1,6 +1,6 @@
 import {DATA, DATA_SHUFFLED, randomIndex} from './api.js';
 
-function sequential(arr, propName = 'id', propValue = randomIndex(arr) + 1) {
+function linear(arr, propName = 'id', propValue = randomIndex(arr) + 1) {
 	let isntFound = true;
 	let i = 0;
 	do {
@@ -71,6 +71,6 @@ function binary(array, propName = 'id', propValue = randomIndex(array) + 1) {
 const nodeArgs = process.argv.slice(2);
 // console.log(DATA);
 // console.log('Node args: ', nodeArgs);
-// sequential(DATA);
+// linear(DATA);
 // binaryTree(DATA_SHUFFLED);
 // binary(DATA);
