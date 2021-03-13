@@ -4,10 +4,10 @@
 import * as fs from 'fs';
 
 const CONTENT_PATH = './content/';
-const DATA_NAME = 'MOCK_DATA.json';
-const DATA_NAME_SHUFFLED = 'SHUFFLED_' + DATA_NAME;
-export const DATA = getJSON(CONTENT_PATH + DATA_NAME);
-export const DATA_SHUFFLED = getJSON(CONTENT_PATH + DATA_NAME_SHUFFLED);
+const MOCK_NAME = 'MOCK_DATA.json';
+const MOCK_NAME_SHUFFLED = 'SHUFFLED_' + MOCK_NAME;
+export const DATA = getJSON(CONTENT_PATH + MOCK_NAME);
+export const DATA_SHUFFLED = getJSON(CONTENT_PATH + MOCK_NAME_SHUFFLED);
 
 export function getJSON(src) {
 	// const doc = await fetch(src);
@@ -41,4 +41,4 @@ export function shuffle(arr, coff = 0.5) {
 	return data;
 }
 
-// setJSON(`${DATA_NAME_SHUFFLED}, shuffle(DATA));
+// setJSON(`${MOCK_NAME_SHUFFLED}, shuffle(DATA));
