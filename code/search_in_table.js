@@ -74,7 +74,13 @@ const nodeArgs = process.argv.slice(2);
 // linear(DATA);
 // binaryTree(DATA_SHUFFLED);
 // binary(DATA);
-function fibonacciSearch(array, target, min_position, max_position) {
+function fibonacciSearch(
+	array,
+	target,
+	propName = 'id',
+	min_position = 0,
+	max_position = array.length
+) {
 	function fib(n) {
 		if (n <= 0) return 0;
 		if (n <= 2) return 1;
@@ -99,12 +105,12 @@ function fibonacciSearch(array, target, min_position, max_position) {
 			`index: ${index} min_position: ${min_position} max_position: ${max_position}`
 		);
 
-		if (array[index] == target) {
+		if (array[index][propName] == target) {
 			glob_comp++;
 
-			console.log(glob_comp, array[index]);
+			console.log(glob_comp, array[index][propName]);
 			return index;
-		} else if (target < array[min_position + fib(f - 1)]) {
+		} else if (target < array[min_position + fib(f - 1)][propName]) {
 			glob_comp += 2;
 
 			max_position = index;
@@ -119,4 +125,4 @@ function fibonacciSearch(array, target, min_position, max_position) {
 	return -1;
 }
 const fib_arr = [-2, 0, 3, 5, 7, 9, 11, 15, 18, 21];
-fibonacciSearch(fib_arr, 7, 0, fib_arr.length);
+fibonacciSearch(DATA, 7);
