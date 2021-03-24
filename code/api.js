@@ -46,3 +46,16 @@ export function randomIndex(array) {
 }
 
 // setJSON(`${MOCK_NAME_SHUFFLED}, shuffle(DATA));
+
+//* Helpfull functions //
+export function startTrackFunctionTimeAndIterations(functionToTrack) {
+	const start = new Date().getTime();
+
+	let iterations = 0;
+	for (let k = 0; k < times; k++) {
+		iterations += functionToTrack();
+	}
+
+	const finish = new Date().getTime();
+	return [finish - start, iterations];
+}
