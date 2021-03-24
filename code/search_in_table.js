@@ -74,21 +74,20 @@ const nodeArgs = process.argv.slice(2);
 // linear(DATA);
 // binaryTree(DATA_SHUFFLED);
 // binary(DATA);
-function fib(n) {
-	if (n <= 0) return 0;
-	if (n <= 2) return 1;
-	return fib(n - 1) + fib(n - 2);
-}
-
-function smallest_greater_eq_fib(n) {
-	let f = fib(0),
-		cut = 0;
-	while (f < n) f = fib(++cut);
-
-	return cut;
-}
-
 function fibonacciSearch(array, target, min_position, max_position) {
+	function fib(n) {
+		if (n <= 0) return 0;
+		if (n <= 2) return 1;
+		return fib(n - 1) + fib(n - 2);
+	}
+	function smallest_greater_eq_fib(n) {
+		let f = fib(0),
+			cut = 0;
+		while (f < n) f = fib(++cut);
+
+		return cut;
+	}
+
 	let f = smallest_greater_eq_fib(max_position - min_position + 1);
 	let glob_comp = 0;
 	while (f >= 0) {
