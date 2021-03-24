@@ -65,7 +65,8 @@ function binary(array, propName = 'id', propValue = randomIndex(array) + 1) {
 			end = current - 1;
 		}
 	}
-	return [i, array[i], propValue];
+	// return [i, array[i], propValue];
+	return i;
 }
 
 const nodeArgs = process.argv.slice(2);
@@ -122,7 +123,7 @@ function fibonacciSearch(
 			f -= 2;
 		}
 	}
-	return -1;
+	return glob_comp;
 }
-const fib_arr = [-2, 0, 3, 5, 7, 9, 11, 15, 18, 21];
+// const fib_arr = [-2, 0, 3, 5, 7, 9, 11, 15, 18, 21];
 fibonacciSearch(DATA, 7);
