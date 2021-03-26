@@ -48,14 +48,23 @@ export function randomIndex(array) {
 // setJSON(`${MOCK_NAME_SHUFFLED}, shuffle(DATA));
 
 //* Helpfull functions //
-export function startTrackFunctionTimeAndIterations(functionToTrack, timesToCall = 6) {
+export function startTrackFunctionTimeAndIterations(functionToTrack, timesToCall = 6, functionName = '') {
 	const start = new Date().getTime();
-
 	let iterations = 0;
 	for (let k = 0; k < timesToCall; k++) {
 		iterations += functionToTrack();
 	}
-
 	const finish = new Date().getTime();
+	const timeSpent = finish - start;
+
+	// console.log("This is the outer level");
+	console.group(functionName);
+	console.log(`Number of experiments: ${timesToCall}`);
+	console.log(`Number of iterations: ${iterations}`);
+	console.log(`Time elapsed: ${timeSpent} (ms)`);
+	console.log(`Time per experiment: ${timeSpent/timesToCall} (ms)`);
+	console.log(`Iterations per experiment: ${iterations/timesToCall}`);
+	console.groupEnd(functionName);
+	
 	return [finish - start, iterations];
 }
