@@ -1,4 +1,4 @@
-import {DATA, DATA_SHUFFLED, randomIndex} from './api.js';
+import { DATA, DATA_SHUFFLED, randomIndex, startTrackFunctionTimeAndIterations } from './api.js';
 
 function linear(arr, propName = 'id', propValue = randomIndex(arr) + 1) {
 	let isntFound = true;
@@ -36,13 +36,13 @@ function binaryTree(array, propName = 'id', propValue = randomIndex(array) + 1) 
 			}
 		} while (isntInserted);
 	}
-	console.log(node); // it works becouse is mutable
+	// console.log(node); // it works becouse is mutable
 	// Process
 	let target = JSON.parse(JSON.stringify(node));
 	let i = 0;
 	while (target.value != propValue) {
 		i++;
-		console.log(i, target.value, propValue);
+		// console.log(i, target.value, propValue);
 		propValue < target.value ? (target = target.min) : (target = target.max);
 	}
 	i++; // becouse while work until is correct the condition, and stop when we find what we search
@@ -77,7 +77,7 @@ const nodeArgs = process.argv.slice(2);
 // binary(DATA);
 function fibonacciSearch(
 	array,
-	target,
+	target = randomIndex(array) + 1,
 	propName = 'id',
 	min_position = 0,
 	max_position = array.length
@@ -88,10 +88,8 @@ function fibonacciSearch(
 		return fib(n - 1) + fib(n - 2);
 	}
 	function smallest_greater_eq_fib(n) {
-		let f = fib(0),
-			cut = 0;
+		let f = fib(0), cut = 0;
 		while (f < n) f = fib(++cut);
-
 		return cut;
 	}
 
@@ -101,24 +99,22 @@ function fibonacciSearch(
 		let index = Math.min(min_position + fib(f - 1), max_position - 1);
 		index = Math.max(0, index);
 
-		console.log(
-			f,
-			`index: ${index} min_position: ${min_position} max_position: ${max_position}`
-		);
+		// console.log(
+		// 	f,
+		// 	`index: ${index} min_position: ${min_position} max_position: ${max_position}`
+		// );
 
 		if (array[index][propName] == target) {
 			glob_comp++;
 
-			console.log(glob_comp, array[index][propName]);
+			// console.log(glob_comp, array[index][propName]);
 			return index;
 		} else if (target < array[min_position + fib(f - 1)][propName]) {
 			glob_comp += 2;
-
 			max_position = index;
 			f -= 1;
 		} else {
 			glob_comp += 2;
-
 			min_position = index;
 			f -= 2;
 		}
@@ -126,4 +122,10 @@ function fibonacciSearch(
 	return glob_comp;
 }
 // const fib_arr = [-2, 0, 3, 5, 7, 9, 11, 15, 18, 21];
-fibonacciSearch(DATA, 7);
+function trackAll(timesToCall = 6) {
+	startTrackFunctionTimeAndIterations(()=>linear(DATA_SHUFFLED),timesToCall,'Linear');
+	startTrackFunctionTimeAndIterations(()=>binaryTree(DATA_SHUFFLED),timesToCall,'Binary Tree');
+	startTrackFunctionTimeAndIterations(()=>binary(DATA),timesToCall,'Binary Search');
+	startTrackFunctionTimeAndIterations(()=>fibonacciSearch(DATA),timesToCall,'Fibonacci Search');
+}
+trackAll()
