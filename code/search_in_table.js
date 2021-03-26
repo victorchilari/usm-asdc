@@ -77,7 +77,7 @@ const nodeArgs = process.argv.slice(2);
 // binary(DATA);
 function fibonacciSearch(
 	array,
-	target,
+	target = randomIndex(array) + 1,
 	propName = 'id',
 	min_position = 0,
 	max_position = array.length
@@ -122,4 +122,10 @@ function fibonacciSearch(
 	return glob_comp;
 }
 // const fib_arr = [-2, 0, 3, 5, 7, 9, 11, 15, 18, 21];
-startTrackFunctionTimeAndIterations(()=>fibonacciSearch(DATA, 7));
+function trackAll(timesToCall = 6) {
+	startTrackFunctionTimeAndIterations(()=>linear(DATA_SHUFFLED),timesToCall,'Linear');
+	startTrackFunctionTimeAndIterations(()=>binaryTree(DATA_SHUFFLED),timesToCall,'Binary Tree');
+	startTrackFunctionTimeAndIterations(()=>binary(DATA),timesToCall,'Binary Search');
+	startTrackFunctionTimeAndIterations(()=>fibonacciSearch(DATA),timesToCall,'Fibonacci Search');
+}
+trackAll()

@@ -58,13 +58,16 @@ export function startTrackFunctionTimeAndIterations(functionToTrack, timesToCall
 	const timeSpent = finish - start;
 
 	// console.log("This is the outer level");
-	console.group(functionName);
+	console.group();
+	console.log(functionName);
+	console.log('-------------------------------------------');
 	console.log(`Number of experiments: ${timesToCall}`);
 	console.log(`Number of iterations: ${iterations}`);
 	console.log(`Time elapsed: ${timeSpent} (ms)`);
 	console.log(`Time per experiment: ${(timeSpent/timesToCall*1000).toFixed(2)} (microsec)`);
 	console.log(`Iterations per experiment: ${iterations/timesToCall}`);
-	console.groupEnd(functionName);
+	console.groupEnd();
+	console.log();
 	
 	return [finish - start, iterations];
 }
