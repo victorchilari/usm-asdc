@@ -4,6 +4,7 @@
 		"node-fetch": "^2.6.1"
 	},
 	"scripts": {
-		"search_in_table": "node code/search_in_table"
+		"search_in_table": "node code/search_in_table",
+		"sort_table": "node code/sort_table"
 	}
 }
