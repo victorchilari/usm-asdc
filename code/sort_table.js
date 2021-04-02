@@ -63,4 +63,37 @@ function insertion_sort(unsortedArr, propName = 'id') {
 	// console.log(arr);
 	return i; // number of iterations
 }
-console.log(insertion_sort(DATA_SHUFFLED));
+
+function selection_sort(unsortedArr, propName = 'id') {
+	let i = 0;
+	let arr = [...unsortedArr];
+	let sortedArr = [],
+		restArr = [];
+	while (arr.length) {
+		const j = 0;
+		const target = arr[j][propName];
+		let minNode = {value: target, position: j, content: arr[j]};
+
+		for (let k = j + 1; k < arr.length; k++) {
+			++i;
+			const current = arr[k][propName];
+			// console.log(current, minNode.value, current < minNode.value, arr, sortedArr);
+			if (current < minNode.value) {
+				minNode = {value: current, position: k, content: arr[k]};
+			}
+		}
+		restArr = deleteFromArrayByIndex(arr, minNode.position); // Stergem nodul cu valoare minima din tabelul nesortat.
+		// console.log('Scoatem nodul minim: ', restArr);
+		restArr = insertIntoArrayByIndex(restArr, minNode.position, arr[j]); // Pozitionam nodul maxim pe pozitia elementului celui minim, acela pe care l-am sters.
+		restArr = deleteFromArrayByIndex(restArr, j); // Stergem elementul, cu care am operat precedent, de pe pozitia sa initiala.
+		// console.log('Pozitionam nodul maxim: ', restArr);
+
+		sortedArr.push(minNode.content); // Adaugam nodul minim in masivul sortat.
+		arr = [...restArr]; // inlocuim masivul curent cu cel nesortat.
+	}
+	console.log(sortedArr);
+	return i; // number of iterations
+	// TODO change minNode.value-> minNode.content[propName]
+}
+const testArr = [45, 5, 1, 23, 40, 35];
+console.log(selection_sort(DATA_SHUFFLED));
