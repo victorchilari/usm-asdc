@@ -103,7 +103,7 @@ function partition(arr, start, end, propName) {
 	return [pivotIndex, iterations];
 }
 
-function quick_sort_recursive(arr, start = 0, end = arr.length - 1, propName = 'id') {
+function quick_sort(arr, start = 0, end = arr.length - 1, propName = 'id') {
 	let i = 0;
 	// Base case or terminating case
 	if (start >= end) {
@@ -115,11 +115,38 @@ function quick_sort_recursive(arr, start = 0, end = arr.length - 1, propName = '
 	i += iterations;
 
 	// Recursively apply the same logic to the left and right subarrays
-	quick_sort_recursive(arr, start, index - 1);
-	quick_sort_recursive(arr, index + 1, end);
+	quick_sort(arr, start, index - 1);
+	quick_sort(arr, index + 1, end);
 	console.log(arr, i);
 	return i; // number of iterations
 }
 
-const testArr = [45, 5, 1, 23, 40, 35];
-console.log(quick_sort_recursive(DATA_SHUFFLED));
+function shell_sort(arr, propName = 'id') {
+	const length = arr.length;
+
+	// Start with a really large gap, and then reduce the gap until there isn't any
+	// Gap-ul se incepe ca jumatate din lungimea masivului
+	// La sfarsitul fiecarei iteratii, in while, il impartim la 2
+	let gap = Math.floor(length / 2);
+	while (gap > 0) {
+		// Do a insertion sort for each of the section the gap ends up dividing
+		for (let i = gap; i < length; i += 1) {
+			const current = arr[i];
+
+			// Ciclu pentru a sorta
+			let j;
+			for (j = i; j >= gap && arr[j - gap][propName] > current[propName]; j -= gap) {
+				arr[j] = arr[j - gap];
+			}
+
+			arr[j] = current;
+		}
+
+		gap = Math.floor(gap / 2);
+	}
+
+	return iterations;
+}
+
+const testArr = [45, 5, 1, 23, 40, 35]; // DATA_SHUFFLED
+console.log(shell_sort(DATA_SHUFFLED));
