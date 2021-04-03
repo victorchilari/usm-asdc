@@ -48,7 +48,11 @@ export function randomIndex(array) {
 // setJSON(`${MOCK_NAME_SHUFFLED}, shuffle(DATA));
 
 //* Helpfull functions //
-export function startTrackFunctionTimeAndIterations(functionToTrack, timesToCall = 6, functionName = '') {
+export function startTrackFunctionTimeAndIterations(
+	functionToTrack,
+	timesToCall = 6,
+	functionName = ''
+) {
 	const start = new Date().getTime();
 	let iterations = 0;
 	for (let k = 0; k < timesToCall; k++) {
@@ -64,10 +68,25 @@ export function startTrackFunctionTimeAndIterations(functionToTrack, timesToCall
 	console.log(`Number of experiments: ${timesToCall}`);
 	console.log(`Number of iterations: ${iterations}`);
 	console.log(`Time elapsed: ${timeSpent} (ms)`);
-	console.log(`Time per experiment: ${(timeSpent/timesToCall*1000).toFixed(2)} (microsec)`);
-	console.log(`Iterations per experiment: ${iterations/timesToCall}`);
+	console.log(
+		`Time per experiment: ${((timeSpent / timesToCall) * 1000).toFixed(2)} (microsec)`
+	);
+	console.log(`Iterations per experiment: ${iterations / timesToCall}`);
 	console.groupEnd();
 	console.log();
-	
+
 	return [finish - start, iterations];
+}
+
+export function deleteFromArrayByIndex(array, index) {
+	const arr = [...array];
+	const firstPart = arr.slice(0, index);
+	const secondPart = arr.slice(index + 1);
+	return [...firstPart, ...secondPart];
+}
+export function insertIntoArrayByIndex(array, index, element) {
+	const arr = [...array];
+	const firstPart = arr.slice(0, index);
+	const secondPart = arr.slice(index);
+	return [...firstPart, element, ...secondPart];
 }

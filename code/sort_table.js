@@ -1,4 +1,9 @@
-import {DATA_SHUFFLED, startTrackFunctionTimeAndIterations} from './api.js';
+import {
+	DATA_SHUFFLED,
+	deleteFromArrayByIndex,
+	insertIntoArrayByIndex,
+	startTrackFunctionTimeAndIterations
+} from './api.js';
 
 function bubble_sort(unsortedArr, propName = 'id') {
 	let wasChanged = false;
@@ -16,19 +21,6 @@ function bubble_sort(unsortedArr, propName = 'id') {
 		}
 	} while (wasChanged);
 	return i; // number of iterations
-}
-
-function deleteFromArrayByIndex(array, index) {
-	const arr = [...array];
-	const firstPart = arr.slice(0, index);
-	const secondPart = arr.slice(index + 1);
-	return [...firstPart, ...secondPart];
-}
-function insertIntoArrayByIndex(array, index, element) {
-	const arr = [...array];
-	const firstPart = arr.slice(0, index);
-	const secondPart = arr.slice(index);
-	return [...firstPart, element, ...secondPart];
 }
 
 function insertion_sort(unsortedArr, propName = 'id') {
@@ -60,7 +52,6 @@ function insertion_sort(unsortedArr, propName = 'id') {
 			arr = newArr;
 		}
 	}
-	// console.log(arr);
 	return i; // number of iterations
 }
 
@@ -80,7 +71,6 @@ function selection_sort(unsortedArr, propName = 'id') {
 		}
 		[arr[minNode.position], arr[j]] = [arr[j], arr[minNode.position]];
 	}
-	console.log(arr);
 	return i; // number of iterations
 }
 
@@ -117,7 +107,6 @@ function quick_sort(arr, start = 0, end = arr.length - 1, propName = 'id') {
 	// Recursively apply the same logic to the left and right subarrays
 	quick_sort(arr, start, index - 1);
 	quick_sort(arr, index + 1, end);
-	console.log(arr, i);
 	return i; // number of iterations
 }
 
@@ -145,8 +134,37 @@ function shell_sort(arr, propName = 'id') {
 		gap = Math.floor(gap / 2);
 	}
 
-	return iterations;
+	return 0; //! to fix
 }
 
-const testArr = [45, 5, 1, 23, 40, 35]; // DATA_SHUFFLED
-console.log(shell_sort(DATA_SHUFFLED));
+function trackAll(timesToCall = 6) {
+	startTrackFunctionTimeAndIterations(
+		() => bubble_sort(DATA_SHUFFLED),
+		timesToCall,
+		'Bubble Sort'
+	);
+	startTrackFunctionTimeAndIterations(
+		() => insertion_sort(DATA_SHUFFLED),
+		timesToCall,
+		'Insertion Sort'
+	);
+	startTrackFunctionTimeAndIterations(
+		() => selection_sort(DATA_SHUFFLED),
+		timesToCall,
+		'Selection Sort'
+	);
+	startTrackFunctionTimeAndIterations(
+		() => quick_sort(DATA_SHUFFLED),
+		timesToCall,
+		'Quick Sort'
+	);
+	startTrackFunctionTimeAndIterations(
+		() => shell_sort(DATA_SHUFFLED),
+		timesToCall,
+		'Shell Sort'
+	);
+}
+trackAll(1000);
+
+// const testArr = [45, 5, 1, 23, 40, 35]; // DATA_SHUFFLED
+// console.log(shell_sort(DATA_SHUFFLED));
