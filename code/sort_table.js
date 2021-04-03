@@ -83,5 +83,43 @@ function selection_sort(unsortedArr, propName = 'id') {
 	console.log(arr);
 	return i; // number of iterations
 }
+
+function partition(arr, start, end, propName) {
+	let iterations = 0;
+	// Taking the last element as the pivot
+	const pivotValue = arr[end][propName];
+	let pivotIndex = start;
+	for (let i = start; i < end; i++) {
+		iterations++;
+		if (arr[i][propName] < pivotValue) {
+			// Swapping elements
+			[arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+			// Moving to next element
+			pivotIndex++;
+		}
+	}
+	// Putting the pivot value in the middle
+	[arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+	return [pivotIndex, iterations];
+}
+
+function quick_sort_recursive(arr, start = 0, end = arr.length - 1, propName = 'id') {
+	let i = 0;
+	// Base case or terminating case
+	if (start >= end) {
+		return;
+	}
+
+	// Returns pivotIndex and number of iterations
+	let [index, iterations] = partition(arr, start, end, propName);
+	i += iterations;
+
+	// Recursively apply the same logic to the left and right subarrays
+	quick_sort_recursive(arr, start, index - 1);
+	quick_sort_recursive(arr, index + 1, end);
+	console.log(arr, i);
+	return i; // number of iterations
+}
+
 const testArr = [45, 5, 1, 23, 40, 35];
-console.log(selection_sort(DATA_SHUFFLED));
+console.log(quick_sort_recursive(DATA_SHUFFLED));
